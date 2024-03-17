@@ -32,10 +32,6 @@
     }
 }
 
-.input-div {
-  align-items: center;
-  text-align: center;
-}
 .hero-content {
   position: absolute;
   top: 50%;
@@ -132,7 +128,7 @@
   margin-top: 20px;  
   width: 200px;
   height: 50px;
-  border-radius: 5%;
+  border-radius: 3%;
   border: 2px solid transparent;
   display: flex;
   justify-content: center;
@@ -141,17 +137,118 @@
   margin-right: auto;
   animation: initialise forwards 3s, flicker 1s alternate-reverse infinite;
   animation-delay: 1s;
+}
 
+.input-div-upload {
+    padding: 100px;
+    margin-top: 20px;  
+    width: 200px;
+    height: 50px;
+    border-radius: 3%;
+    border: 2px solid rgb(0, 0, 139);
+    font-weight: normal;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    animation: upload forwards 1s, uploadFlicker forwards infinite 3s;
 }
 
 .icon-upload {
-  color: rgb(0, 0, 139);
-  opacity: 0%;
-  font-size: 2rem;
-  cursor: pointer;
-  animation: iconflicker 4s linear infinite;
-  animation-delay: 1s;
+    color: rgb(0, 0, 139);
+    opacity: 0%;
+    font-size: 2rem;
+    cursor: pointer;
+    animation: iconflicker 4s linear infinite;
+    animation-delay: 1s;
+  }
+
+  .icon-upload-hover {
+    color: white;
+    opacity: 0%;
+    font-size: 2rem;
+    cursor: pointer;
+    animation: iconflicker 4s linear infinite;
+    animation-delay: 1s;
+  }
+
+@keyframes upload {
+    from {
+        padding: 100px;
+        background-color: rgb(0, 0, 139);
+        font-size: 40px;
+    }
+
+    to {
+        padding: 0px;
+        background-color: transparent;
+        font-size: 20px;
+    }
 }
+
+@keyframes uploadFlicker {
+    0% {
+      opacity: 1;
+    }
+  
+    5% {
+      opacity: 0.2;
+      background-color: rgb(0, 0, 139);
+      color: white;
+    }
+  
+    10% {
+      opacity: 1;
+      background-color: transparent;
+      color: black;
+    }
+  
+    15% {
+      opacity: 0.2;
+      background-color: rgb(0, 0, 139);
+      color: white;
+    }
+  
+    20% {
+      opacity: 1;
+      background-color: transparent;
+      color: black;
+    }
+  
+    100% {
+      opacity: 1;
+      background-color: transparent;
+      color: black;
+    }
+  }
+
+@keyframes iconflicker {
+    0% {
+      opacity: 1;
+    }
+  
+    5% {
+      opacity: 0.2;
+    }
+  
+    10% {
+      opacity: 1;
+    }
+  
+    15% {
+      opacity: 0.2;
+    }
+  
+    20% {
+      opacity: 1;
+    }
+  
+    100% {
+      opacity: 1;
+    }
+  }
 
 .input {
   position: absolute;
@@ -243,6 +340,11 @@
   100% {
     opacity: 1;
   }
+}
+
+.input-div:hover, .input-div-upload:hover, .icon-upload:hover {
+    background-color: rgb(0, 0, 139);
+    color: white;
 }
 
 

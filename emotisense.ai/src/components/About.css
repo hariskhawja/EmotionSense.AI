@@ -1,0 +1,36 @@
+/* About.css */
+.about-section {
+    background-color: #f7f7f7;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.content {
+    display: flex;
+    align-items: center; /* Align items vertically */
+}
+
+.text {
+    flex: 1; /* Grow to fill available space */
+}
+
+.about-section h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.about-section p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.image-container {
+    margin-left: 40px; /* Add spacing between text and image */
+}
+
+.about-image {
+    max-width: 100%; /* Ensure image does not exceed container width */
+    height: auto;
+}
