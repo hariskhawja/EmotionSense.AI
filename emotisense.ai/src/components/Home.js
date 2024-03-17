@@ -1,15 +1,53 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './Home.css'
 
 
 const Home = () => {
-    const [file, setFile] = useState();
+  const [file, setFile] = useState();
   const [uploadProgress, setUploadProgress] = useState(0);
+  const [returnData, setReturnData] = useState();
+  const [fileContent, setFileContent] = useState({});
 
-  function handleChange(event) {
-    setFile(event.target.files[0]);
-  }
+  useEffect(() => {
+    fetch('http://localhost:5000/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(fileContent),
+      })
+        .then(response => response.json())
+        .then(jsonData => setReturnData(jsonData))
+        .catch(error => console.error('Error:', error));
+    }, [fileContent]);
+
+    function handleChange(event) {
+        const selectedFile = event.target.files[0];
+
+        if (!selectedFile) {
+            console.error('No file selected');
+            return;
+        }
+
+        setFile(selectedFile);
+
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            const content = reader.result;
+            try {
+                const parsedContent = JSON.parse(content);
+                setFileContent(parsedContent);
+            } catch (error) {
+                console.error('Error parsing JSON:', error);
+                // Handle error if the content is not valid JSON
+            }
+        };
+        reader.readAsText(selectedFile);
+    }
+
+
+
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -36,6 +74,10 @@ const Home = () => {
         //     // Handle error
         // }
     }
+
+    // console.log(file)
+    console.log(fileContent)
+    // console.log(returnData)
 
     return (
     <div className="hero">
