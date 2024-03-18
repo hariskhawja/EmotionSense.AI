@@ -114,7 +114,6 @@ def clean_text(text):
 
 
 def prediction(text, model, cv):
-    print(text)
     text = clean_text(text)
     X = cv.transform([text]).toarray()
     return model.predict_proba(X)[0]
@@ -122,7 +121,7 @@ def prediction(text, model, cv):
 
 def get_data(data, user, positivity_model, emotion_model, positivity_cv, emotion_cv):
     # key: timestamp in ms
-    # returns list containing [positivity score, negativity_score, sadness, joy, love, anger, fear, and surprise]
+    # returns list containing [negativity_score, positivity score, sadness, joy, love, anger, fear, surprise, text]
     sentiment_dict = {}
     messages = data["messages"]
     for message in messages:
@@ -130,9 +129,22 @@ def get_data(data, user, positivity_model, emotion_model, positivity_cv, emotion
             positivity = prediction(message["content"], positivity_model, positivity_cv)
             emotion = prediction(message["content"], emotion_model, emotion_cv)
             time = message["timestamp_ms"]
-            sentiment_dict[time] = list(positivity) + list(emotion)
+            sentiment_dict[time] = list(positivity) + list(emotion) + [message["content"]]
     
     return sentiment_dict
+
+
+def get_extremes(sentiment_dict):
+    sentiments = list(sentiment_dict.values())
+    sentiments.sort()
+    for i in sentiments:
+        print(i)
+    most_positive = []
+    most_negative = []
+    for i in range(5):
+        most_positive.append((sentiments[i][-1], sentiments[i][1]))
+        most_negative.append((sentiments[len(sentiments) - i - 1][-1], sentiments[len(sentiments) - i - 1][0]))
+    return most_positive, most_negative
 
 
 file = open('models/positivity_model.pickle', 'rb')
@@ -148,4 +160,4 @@ file = open('models/emotion_cv.pickle', 'rb')
 emotion_cv = pickle.load(file)
 
 
-print(get_data(data, "Edison Ying", positivity_model, emotion_model, positivity_cv, emotion_cv))
+print(get_extremes(get_data(data, "Edison Ying", positivity_model, emotion_model, positivity_cv, emotion_cv)))
