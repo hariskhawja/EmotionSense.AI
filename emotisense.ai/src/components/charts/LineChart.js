@@ -8,29 +8,32 @@ function LineChart({ chartData, title}) {
         data={chartData}
         options={{
           plugins: {
-            title: {
-              display: true,
-              text: title
-            },
-            legend: {
-              display: false
-            }
+              title: {
+                  display: true,
+                  text: title
+              },
+              legend: {
+                  display: false
+              }
           },
           scales: {
-            x: {
-                title: {
-                    display: true,
-                    text: 'Time'
-                },
-            },
-            y: {
-                title: {
-                    display: true,
-                    text: 'Score'
-                },
-            }
-        }
-        }}
+              x: {
+                  title: {
+                      display: true,
+                      text: 'Time'
+                  },
+                  ticks: {
+                    maxTicksLimit: 5
+                  }
+              },
+              y: {
+                  title: {
+                      display: true,
+                      text: 'Score'
+                  }
+              }
+          }
+      }}
       />
     </div>
   );

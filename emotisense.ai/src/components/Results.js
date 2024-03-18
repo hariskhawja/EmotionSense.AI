@@ -13,8 +13,9 @@ const Results = ({data}) => {
     for (var i in data)  {
         // returns list containing [negativity_score, positivity score, sadness, joy, love, anger, fear, surprise, text]
         const date = new Date(parseInt(i));
+        console.log(date.toString().split("GMT")[0])
         formattedData.push({
-            time: date.toLocaleDateString(),
+            time: date.toString().split("GMT")[0],
             positivity_score: data[i][1],
             sadness: data[i][2],
             joy: data[i][3],
@@ -108,7 +109,7 @@ const Results = ({data}) => {
                   <div className='chart_div'>
                     <LineChart chartData={getData('fear')} title="Fear vs Time"/>
                   </div>
-                </div>
+                </div>  
 
                 <div className='row'>
                   <div className='chart_div'>
