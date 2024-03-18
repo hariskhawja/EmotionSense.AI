@@ -5,7 +5,7 @@ import image from "../images/logo.png"
 
 const About = () => {
     return (
-        <div className="about-section">
+        <div className="about-section" id='about'>
             <div className="content">
                 <div className="text">
                     <h2>About Us</h2>

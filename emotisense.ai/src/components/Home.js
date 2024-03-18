@@ -54,7 +54,7 @@ const Home = () => {
 
 
     return (
-    <div className="hero" href="#home">
+    <div className="hero" id='home'>
         <div className="blurry-background">
             <div className="hero-content">
                 <div className='title'>EmotionSense<span style={{color: "rgb(0, 0, 139)", fontWeight: "bold"}}>.AI</span></div>

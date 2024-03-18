@@ -6,7 +6,7 @@ import { useRef } from 'react';
 const Results = () => {
     const ref = useRef(null);
     return (
-        <div className="about-section">
+        <div className="about-section" id='results'>
             <div className="content">
                 <div className="text" ref={ref}>
             
