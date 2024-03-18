@@ -62,13 +62,13 @@ const Results = ({data}) => {
                     <LineChart chartData={getData('positivity_score')} title="Positivity vs Time"/>
                   </div>
                   <div className='chart_text'>
-                    <p>Text</p>
+                    <p className='text_container'>Text</p>
                   </div>
                 </div>
 
                 <div className='row'>
                   <div className='chart_text'>
-                    <p>Text</p>
+                    <p className='text_container'>Text</p>
                   </div>
                   <div className='chart_div'>
                     <LineChart chartData={getData('sadness')} title="Sadness vs Time"/>
@@ -80,13 +80,13 @@ const Results = ({data}) => {
                     <LineChart chartData={getData('joy')} title="Joy vs Time"/>
                   </div>
                   <div className='chart_text'>
-                    <p>Text</p>
+                    <p className='text_container'>Text</p>
                   </div>
                 </div>
 
                 <div className='row'>
                   <div className='chart_text'>
-                    <p>Text</p>
+                    <p className='text_container'>Text</p>
                   </div>
                   <div className='chart_div'>
                     <LineChart chartData={getData('love')} title="Love vs Time"/>
@@ -98,13 +98,13 @@ const Results = ({data}) => {
                     <LineChart chartData={getData('anger')} title="Anger vs Time"/>
                   </div>
                   <div className='chart_text'>
-                    <p>Text</p>
+                    <p className='text_container'>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
                   </div>
                 </div>
 
                 <div className='row'>
                   <div className='chart_text'>
-                    <p>Text</p>
+                    <p className='text_container'>Text</p>
                   </div>
                   <div className='chart_div'>
                     <LineChart chartData={getData('fear')} title="Fear vs Time"/>
@@ -116,7 +116,7 @@ const Results = ({data}) => {
                     <LineChart chartData={getData('surprise')} title="Surprise vs Time"/>
                   </div>
                   <div className='chart_text'>
-                    <p>Text</p>
+                    <p className='text_container'>Text</p>
                   </div>
                 </div>
               </div>

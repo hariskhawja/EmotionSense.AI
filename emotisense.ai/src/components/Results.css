@@ -22,5 +22,12 @@
 .chart_text{
     flex:1;
     margin: 10px;
+    width: 25%;
+    word-wrap: break-word
+}
+
+.text_container{
+    width: 100%;
+    word-wrap: break-word
 }
 
