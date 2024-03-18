@@ -49,18 +49,78 @@ const Results = ({data}) => {
     return (
         <div className="about-section" id='results'>
             <div className="content">
-                <div className="section_container">
-                    <h2>Results</h2>
-                    {formattedData.length <= 1 ? (
-                    <h2>Submit a JSON File of your Message History to See your Results!</h2>
-                    )
-                    :
-                    (
-                    <div className='chart_div'>
-                        <LineChart chartData={getData('positivity_score')}/>
-                    </div>
-                    )}
+              {formattedData.length <= 1 ? (
+              <h2>Submit a JSON File of your Message History to See your Results!</h2>
+              )
+              :
+              (
+              <div className="section_container">
+                <h2>Results</h2>
+                <div className='row'>
+                  <div className='chart_div'>
+                    <LineChart chartData={getData('positivity_score')} title="Positivity vs Time"/>
+                  </div>
+                  <div className='chart_text'>
+                    <p>Text</p>
+                  </div>
                 </div>
+
+                <div className='row'>
+                  <div className='chart_text'>
+                    <p>Text</p>
+                  </div>
+                  <div className='chart_div'>
+                    <LineChart chartData={getData('sadness')} title="Sadness vs Time"/>
+                  </div>
+                </div>
+
+                <div className='row'>
+                  <div className='chart_div'>
+                    <LineChart chartData={getData('joy')} title="Joy vs Time"/>
+                  </div>
+                  <div className='chart_text'>
+                    <p>Text</p>
+                  </div>
+                </div>
+
+                <div className='row'>
+                  <div className='chart_text'>
+                    <p>Text</p>
+                  </div>
+                  <div className='chart_div'>
+                    <LineChart chartData={getData('love')} title="Love vs Time"/>
+                  </div>
+                </div>
+
+                <div className='row'>
+                  <div className='chart_div'>
+                    <LineChart chartData={getData('anger')} title="Anger vs Time"/>
+                  </div>
+                  <div className='chart_text'>
+                    <p>Text</p>
+                  </div>
+                </div>
+
+                <div className='row'>
+                  <div className='chart_text'>
+                    <p>Text</p>
+                  </div>
+                  <div className='chart_div'>
+                    <LineChart chartData={getData('fear')} title="Fear vs Time"/>
+                  </div>
+                </div>
+
+                <div className='row'>
+                  <div className='chart_div'>
+                    <LineChart chartData={getData('surprise')} title="Surprise vs Time"/>
+                  </div>
+                  <div className='chart_text'>
+                    <p>Text</p>
+                  </div>
+                </div>
+              </div>
+              )}
+                
             </div>
         </div>
     );

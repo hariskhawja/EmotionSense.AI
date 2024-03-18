@@ -8,8 +8,19 @@
     height: 100%;
 }
 
+.row{
+    display: flex;
+    margin-bottom: 10px;
+}
+
 .chart_div {
-    height: 50%;
-    width: 50%;
+    flex: 2;
+    width: 75%;
+    height: 50%
+}
+
+.chart_text{
+    flex:1;
+    margin: 10px;
 }
 
