@@ -49,7 +49,7 @@ const Results = ({data}) => {
     return (
         <div className="about-section" id='results'>
             <div className="content">
-                <div className="text-chart">
+                <div className="section_container">
                     <h2>Results</h2>
                     {formattedData.length <= 1 ? (
                     <h2>Submit a JSON File of your Message History to See your Results!</h2>

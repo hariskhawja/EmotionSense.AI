@@ -1,14 +1,15 @@
-.chart-container{
-    height: 50%;
-    width: 50%;
+.content {
+    width: 100%;
+    height: 100%;
 }
 
-.text {
-    flex: 1; /* Grow to fill available space */
+.section_container {
+    width: 100%;
+    height: 100%;
 }
 
 .chart_div {
-    height: 500px;
-    width: 500px;
+    height: 50%;
+    width: 50%;
 }
 
