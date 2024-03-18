@@ -1,16 +1,78 @@
 // About.js
-import React from 'react';
-import './About.css'; // Import your CSS file for styling
-import { useRef } from 'react';
+import React, { useEffect } from 'react';
+import Chart from "chart.js/auto";
+import { CategoryScale } from "chart.js";
+import './Results.css'; // Import your CSS file for styling
+import LineChart from './charts/LineChart';
 
-const Results = () => {
-    const ref = useRef(null);
+Chart.register(CategoryScale);
+
+const Results = ({data}) => {
+    let formattedData = []
+
+    for (var i in data)  {
+        // returns list containing [negativity_score, positivity score, sadness, joy, love, anger, fear, surprise, text]
+        const date = new Date(parseInt(i));
+        formattedData.push({
+            time: date.toLocaleDateString(),
+            positivity_score: data[i][1],
+            sadness: data[i][2],
+            joy: data[i][3],
+            love: data[i][4],
+            anger: data[i][5],
+            fear: data[i][6],
+            surprise: data[i][7],
+        })
+    }
+    
+
+    function getData(y_labels) {
+        const chartOptions = {
+            scales: {
+              x: {
+                title: {
+                  display: true,
+                  text: 'Date'
+                },
+              },
+              y: {
+                title: {
+                  display: true,
+                  text: 'Score'
+                },
+              },
+            }
+          };
+        
+
+        const chart = {
+                labels: formattedData.map((d) => d.time), 
+                datasets: [
+                    {
+                        label: y_labels,
+                        data: formattedData.map((d) => d[y_labels]),
+                        backgroundColor: [],
+                        borderColor: "black",
+                        borderWidth: 2
+                    }
+                ],
+            options: chartOptions
+        }
+        return chart
+    }
+    console.log(formattedData)
+
+    console.log(data)
+
     return (
         <div className="about-section" id='results'>
             <div className="content">
-                <div className="text" ref={ref}>
+                <div className="text">
             
                     <h2>Results</h2>
+                     {
+                        data && <LineChart chartData={getData('positivity_score')} />
+                     }
                 </div>
             </div>
         </div>

@@ -8,8 +8,43 @@
   height: 60px;
   align-items: center;
   justify-content: space-around;
+  animation: blackTrans 0.25s forwards;
   /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px, */
     /* rgba(27, 133, 219, 0.5) 5px 10px 15px; */
+}
+
+.button-container-active {
+  display: flex;
+  /* background-color: rgb(27, 133, 219); */
+  position: fixed;
+  z-index: 9999;
+  background-color: transparent;
+  width: 100vw;
+  height: 60px;
+  align-items: center;
+  justify-content: space-around;
+  animation: transBlack 0.5s forwards;
+
+}
+
+@keyframes blackTrans {
+  from {
+    background-color: black;
+  }
+
+  to {
+    background-color: transparent;
+  }
+}
+
+@keyframes transBlack {
+  from {
+    background-color: transparent;
+  }
+
+  to {
+    background-color: black;
+  }
 }
 
 .button {

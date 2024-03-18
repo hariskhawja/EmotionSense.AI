@@ -1,12 +1,12 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import './Home.css'
-
+import Results from './Results';
 
 const Home = () => {
   const [file, setFile] = useState();
-  const [uploadProgress, setUploadProgress] = useState(0);
-  const [returnData, setReturnData] = useState();
+  const [ returnData, setReturnData ] = useState();
+//   const [uploadProgress, setUploadProgress] = useState(0);
   const [fileContent, setFileContent] = useState({});
 
   const [isHovered, setIsHovered] = useState(false);
@@ -52,8 +52,11 @@ const Home = () => {
         reader.readAsText(selectedFile);
     }
 
+    console.log(returnData)
+
 
     return (
+    <div>
     <div className="hero" id='home'>
         <div className="blurry-background">
             <div className="hero-content">
@@ -68,6 +71,8 @@ const Home = () => {
             </form>
             </div>
         </div>
+    </div>
+    <Results data={returnData} />
     </div>
     )
 }
