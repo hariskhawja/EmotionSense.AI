@@ -27,38 +27,20 @@ const Results = ({data}) => {
     
 
     function getData(y_labels) {
-        const chartOptions = {
-            scales: {
-              x: {
-                title: {
-                  display: true,
-                  text: 'Date'
-                },
-              },
-              y: {
-                title: {
-                  display: true,
-                  text: 'Score'
-                },
-              },
+      const chartData = {
+        labels: formattedData.map((d) => d.time), 
+        datasets: [
+            {
+                label: y_labels,
+                data: formattedData.map((d) => d[y_labels]),
+                backgroundColor: [],
+                borderColor: "black",
+                borderWidth: 2
             }
-          };
-        
+        ],
+      }
 
-        const chart = {
-                labels: formattedData.map((d) => d.time), 
-                datasets: [
-                    {
-                        label: y_labels,
-                        data: formattedData.map((d) => d[y_labels]),
-                        backgroundColor: [],
-                        borderColor: "black",
-                        borderWidth: 2
-                    }
-                ],
-            options: chartOptions
-        }
-        return chart
+      return chartData
     }
     console.log(formattedData)
 
@@ -71,7 +53,10 @@ const Results = ({data}) => {
             
                     <h2>Results</h2>
                      {
-                        data && <LineChart chartData={getData('positivity_score')} />
+                        data && <LineChart chartData={getData('positivity_score')} title="Positivity vs Time"/>
+                     }
+                     {
+                      data && <LineChart chartData={getData('sadness')} title="Sadness vs Time"/>
                      }
                 </div>
             </div>

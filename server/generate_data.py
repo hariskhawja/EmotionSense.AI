@@ -135,16 +135,16 @@ def get_data(data, user, positivity_model, emotion_model, positivity_cv, emotion
     return sentiment_dict
 
 
-file = open('../models/positivity_model.pickle', 'rb')
+file = open('./models/positivity_model.pickle', 'rb')
 positivity_model = pickle.load(file)
 
-file = open('../models/positivity_cv.pickle', 'rb')
+file = open('./models/positivity_cv.pickle', 'rb')
 positivity_cv = pickle.load(file)
 
-file = open('../models/emotion_model.pickle', 'rb')
+file = open('./models/emotion_model.pickle', 'rb')
 emotion_model = pickle.load(file)
 
-file = open('../models/emotion_cv.pickle', 'rb')
+file = open('./models/emotion_cv.pickle', 'rb')
 emotion_cv = pickle.load(file)
 
 def run(data):
