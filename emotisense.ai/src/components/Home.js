@@ -35,7 +35,7 @@ const Home = () => {
             console.error('No file selected');
             return;
         }
--
+
         setFile(selectedFile);
 
         const reader = new FileReader();

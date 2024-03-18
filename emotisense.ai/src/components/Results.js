@@ -50,14 +50,10 @@ const Results = ({data}) => {
         <div className="about-section" id='results'>
             <div className="content">
                 <div className="text">
-            
                     <h2>Results</h2>
-                     {
-                        data && <LineChart chartData={getData('positivity_score')} title="Positivity vs Time"/>
-                     }
-                     {
-                      data && <LineChart chartData={getData('sadness')} title="Sadness vs Time"/>
-                     }
+                </div>
+                <div className='chart_div'>
+                  {data && <LineChart chartData={getData('positivity_score')} title="Positivity vs Time"/>}
                 </div>
             </div>
         </div>

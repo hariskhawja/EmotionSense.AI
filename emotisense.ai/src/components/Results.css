@@ -3,3 +3,12 @@
     width: 50%;
 }
 
+.text {
+    flex: 1; /* Grow to fill available space */
+}
+
+.chart_div {
+    height: 500px;
+    width: 500px;
+}
+
