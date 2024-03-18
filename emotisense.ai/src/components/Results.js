@@ -49,11 +49,17 @@ const Results = ({data}) => {
     return (
         <div className="about-section" id='results'>
             <div className="content">
-                <div className="text">
+                <div className="text-chart">
                     <h2>Results</h2>
-                </div>
-                <div className='chart_div'>
-                  {data && <LineChart chartData={getData('positivity_score')} title="Positivity vs Time"/>}
+                    {formattedData.length <= 1 ? (
+                    <h2>Submit a JSON File of your Message History to See your Results!</h2>
+                    )
+                    :
+                    (
+                    <div className='chart_div'>
+                        <LineChart chartData={getData('positivity_score')}/>
+                    </div>
+                    )}
                 </div>
             </div>
         </div>

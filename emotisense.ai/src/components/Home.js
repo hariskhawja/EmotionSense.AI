@@ -52,7 +52,7 @@ const Home = () => {
         reader.readAsText(selectedFile);
     }
 
-    console.log(returnData)
+    console.log(returnData);
 
 
     return (
