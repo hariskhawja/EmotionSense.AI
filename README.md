@@ -8,4 +8,5 @@ Join us on this journey of emotional discovery and unlock the power of emotion a
 Built with React.js, Chart.js, Python, Flask, NLTK, Kaggle
 
 Designed for HackSwift 2024
+
 Credits: Haris Khawja, Edison Ying, Roy Zhang
