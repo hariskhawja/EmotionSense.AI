@@ -5,6 +5,7 @@ import image from "../images/logo.png"
 
 const About = () => {
     return (
+    <div>
         <div className="about-section" id='about'>
             <div className="content">
                 <div className="text">
@@ -18,6 +19,8 @@ const About = () => {
                 </div>
             </div>
         </div>
+        
+    </div>
     );
 };
 

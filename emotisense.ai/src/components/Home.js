@@ -5,9 +5,11 @@ import Results from './Results';
 
 const Home = () => {
   const [file, setFile] = useState();
-  const [ returnData, setReturnData ] = useState();
+  const [ returnData, setReturnData ] = useState({});
 //   const [uploadProgress, setUploadProgress] = useState(0);
-  const [fileContent, setFileContent] = useState({});
+  const [fileContent, setFileContent] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [selectedUser, setSelectedUser] = useState("");
 
   const [isHovered, setIsHovered] = useState(false);
 
@@ -16,17 +18,19 @@ const Home = () => {
   };
 
   useEffect(() => {
+    var formattedPostData = [fileContent, selectedUser];
+    console.log("formattedPostData: ", formattedPostData)
     fetch('http://localhost:5000/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(fileContent),
+        body: JSON.stringify(formattedPostData),
       })
         .then(response => response.json())
         .then(jsonData => setReturnData(jsonData))
         .catch(error => console.error('Error:', error));
-    }, [fileContent]);
+    }, [selectedUser]);
 
     function handleChange(event) {
         const selectedFile = event.target.files[0];
@@ -52,7 +56,25 @@ const Home = () => {
         reader.readAsText(selectedFile);
     }
 
-    console.log(returnData);
+    useEffect(() => {
+        if (fileContent.length === 0) {
+            console.log('No file content');
+        }
+        else {
+
+            console.log("returnData: ", returnData);
+            var participants = fileContent.participants;
+            var all_users = []
+            console.log("participants: ", participants)
+            for (let i = 0; i < participants.length; i++) {
+                all_users.push(participants[i].name);
+            }
+            setUsers(all_users);
+        }
+    }, [fileContent])
+
+    // console.log(returnData);
+    console.log(users);
 
 
     return (
@@ -69,10 +91,23 @@ const Home = () => {
                     {file && <p className="file-selected">{file.name}</p>}
                 </div>
             </form>
+
+            {
+        users.length > 0 && 
+        <div className="dropdown-container">
+            <select className="dropdown" onChange={(e) => setSelectedUser(e.target.value)}>
+            <option value="" disabled selected>Select a User</option>
+            {users.map((user, index) => (
+                <option key={index} value={user}>{user}</option>
+            ))}
+            </select>
+        </div>
+    }
             </div>
         </div>
+        
     </div>
-    <Results data={returnData} />
+    <Results backendData={returnData} />
     </div>
     )
 }

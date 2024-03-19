@@ -7,12 +7,13 @@ CORS(app, support_credentials=True)
 @app.route('/', methods=['POST'])
 @cross_origin(supports_credentials=True)
 
-def hello_world():
+def finish_request():
     data = request.get_json()
-    if not data:
-        return jsonify({'error': 'No data provided'})
+    if not data[0] and not data[1]:
+        return jsonify({})
     
-    final = run(data)
+    final = run(data[0], data[1])
+    
     return jsonify(final)
 
 if __name__ == "__main__":

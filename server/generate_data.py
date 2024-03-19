@@ -114,7 +114,6 @@ def clean_text(text):
 
 
 def prediction(text, model, cv):
-    print(text)
     text = clean_text(text)
     X = cv.transform([text]).toarray()
     return model.predict_proba(X)[0]
@@ -126,13 +125,28 @@ def get_data(data, user, positivity_model, emotion_model, positivity_cv, emotion
     sentiment_dict = {}
     messages = data["messages"]
     for message in messages:
-        if message["sender_name"] == user:
+        if message["sender_name"] == user and "content" in message:
             positivity = prediction(message["content"], positivity_model, positivity_cv)
             emotion = prediction(message["content"], emotion_model, emotion_cv)
             time = message["timestamp_ms"]
-            sentiment_dict[time] = list(positivity) + list(emotion)
+            sentiment_dict[time] = list(positivity) + list(emotion) + [message["content"]]
     
     return sentiment_dict
+
+
+def get_extremes(sentiment_dict):
+    sentiments = list(sentiment_dict.values())
+    sentiments.sort()
+    most_positive = []
+    most_negative = []
+    for i in range(len(sentiments)):
+        if len(most_positive) == 5 and len(most_negative) == 5: break
+        if sentiments[i][0] > 0.25: continue
+        if len(sentiments[i][-1]) >= 20 and len(most_positive) < 5:
+            most_positive.append((sentiments[i][-1], sentiments[i][1]))
+        if len(sentiments[len(sentiments) - i - 1][-1]) >= 20 and len(most_negative) < 5:
+            most_negative.append((sentiments[len(sentiments) - i - 1][-1], sentiments[len(sentiments) - i - 1][0]))
+    return most_positive, most_negative
 
 
 file = open('./models/positivity_model.pickle', 'rb')
@@ -147,8 +161,9 @@ emotion_model = pickle.load(file)
 file = open('./models/emotion_cv.pickle', 'rb')
 emotion_cv = pickle.load(file)
 
-def run(data):
-    return get_data(data, "Edison Ying", positivity_model, emotion_model, positivity_cv, emotion_cv)
+def run(data, user):
+    sentiment_dict = get_data(data, user, positivity_model, emotion_model, positivity_cv, emotion_cv)
+    return sentiment_dict, get_extremes(sentiment_dict)
 
 # print(run(data))
 # print(get_data(data, "Edison Ying", positivity_model, emotion_model, positivity_cv, emotion_cv))
